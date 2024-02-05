@@ -46,14 +46,14 @@ void loop() {
   // but for now we are going to use a more primative way
   int i = highest_element_index(array_in_array);
   Serial.println(i);
-
-  // set the motors to the right position 
-  set_motors(i);
   
   // a bit of debuging output
   printarray();
   Serial.println();
 
+  // set the motors to the right position 
+  set_motors(i);
+  
   // don't overheat the arduino
   delay(1000);
 }
@@ -69,6 +69,9 @@ void printarray() {
 
 void set_motors(int i) {
   // set the motor closest to the light to the slowest stand
+  Serial.print(i);
+  Serial.print(": ");
+  Serial.println(heights[0]);
   servos[i].write(heights[0]);
 
   switch (i) {
@@ -77,10 +80,18 @@ void set_motors(int i) {
     case 3:
     servos[1].write(heights[1]);
     servos[2].write(heights[1]);
+    Serial.print("1: ");
+    Serial.println(heights[1]);
+    Serial.print("2: ");
+    Serial.println(heights[1]);
     break;
     // same but in reversed
     case 1:
     case 2:
+    Serial.print("0: ");
+    Serial.println(heights[1]);
+    Serial.print("3: ");
+    Serial.println(heights[1]);
     servos[0].write(heights[1]);
     servos[3].write(heights[1]);
     break;
@@ -88,13 +99,20 @@ void set_motors(int i) {
 
   // find the oppisite motor and set it to the highest stand
   int opposite_i = 0;
-  for (auto v: opposites) {
-    if (i == opposites[i][0]) {
-      opposite_i = opposites[i][1];
-    } else if (i == opposites[i][1]) {
-      opposite_i = opposites[i][0];
+  
+  for (auto o: opposites) {
+    if (i == o[0]) {
+      opposite_i = o[1];
+    }
+    else if (i == o[1]) {
+      opposite_i = o[0];
     }
   }
+  
+  Serial.print(opposite_i);
+  Serial.print(": ");
+  Serial.println(heights[2]);
+  
   servos[opposite_i].write(heights[2]);
 }
 
