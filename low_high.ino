@@ -10,7 +10,7 @@ int array_in_array[servcount][2];
 
 // the heights the motors will be set to
 int heights[3] = {
-  0, 90, 180
+  0, 45, 90
 };
 
 // which LDR is oppesite to which LDR ?
@@ -55,7 +55,7 @@ void loop() {
   set_motors(i);
   
   // don't overheat the arduino
-  delay(1000);
+  delay(500);
 }
 
 // nice formatting for printing the debug information
