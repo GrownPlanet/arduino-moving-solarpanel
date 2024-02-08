@@ -13,12 +13,6 @@ int heights[3] = {
   0, 45, 90
 };
 
-// which LDR is oppesite to which LDR ?
-const int opposites[servcount/2][2] {
-  {0, 3},
-  {1, 2},
-};
-
 void setup() {
   Serial.begin(9600);
   Serial.println("Hello, World!");
@@ -86,18 +80,8 @@ void set_motors(int i) {
     break;
   }
 
-  // find the oppisite motor and set it to the highest stand
-  int opposite_i = 0;
-  
-  for (auto o: opposites) {
-    if (i == o[0]) {
-      opposite_i = o[1];
-    }
-    else if (i == o[1]) {
-      opposite_i = o[0];
-    }
-  }
-  
+  int opposite_i = 3 - i;
+   
   servos[opposite_i].write(heights[2]);
 }
 
