@@ -41,8 +41,8 @@ void loop() {
   highest_element_index(array_in_array, i);
   
   // a bit of debuging output
-  print_the_chosen_one(i);
   printarray();
+  print_the_chosen_one(i);
 
   // set the motors to the right position 
   set_motors(i);
@@ -57,8 +57,6 @@ void print_the_chosen_one(int i[2]) {
   Serial.print(i[0]);
   Serial.print(", ");
   Serial.println(i[1]);
-
-  printy("{}, {}", i[0], i[1])
 }
 
 // nice formatting for printing the debug information
