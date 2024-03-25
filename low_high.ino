@@ -64,13 +64,13 @@ void loop() {
 
 // nice formatting for printing the two chosen indices
 void printTheChosenOne(int i[2]) {
-  Serial.print((String)i[0] + ", " + (String)i[1]);
+  Serial.println((String)i[0] + ", " + (String)i[1]);
 }
 
 // nice formatting for printing the debug information
 void printarray() {
   for (auto a: arrayInArray) {
-    Serial.print((String)a[0] + " " + (String)a[1]);
+    Serial.println((String)a[0] + " " + (String)a[1]);
   }
 }
 
