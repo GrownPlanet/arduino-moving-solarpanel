@@ -6,7 +6,7 @@
 #define servcount 4
 #define ldrCount 4
 
-#define buzzer_pin 7
+#define buzzerPin 7
 
 Servo servos[servcount];
 const int servoPins[servcount] = { 8, 9, 10, 11 };
@@ -136,13 +136,13 @@ void highestElementIndex(int arr[ldrCount][2], int outputArray[2]) {
 
 void buzzer(String input) {
   if (input.equals("TOOT\n")) {
-    tone(buzzer_pin, 400);
+    tone(buzzerPin, 400);
     delay(500);
-    noTone(buzzer_pin);
+    noTone(buzzerPin);
     delay(100);
-    tone(buzzer_pin, 400);
+    tone(buzzerPin, 400);
     delay(700);
-    noTone(buzzer_pin);
+    noTone(buzzerPin);
   } else if (input.equals("never\n")) {
     never();
   }
