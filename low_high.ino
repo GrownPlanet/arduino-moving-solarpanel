@@ -4,6 +4,8 @@
 #define servcount 4
 #define ldr_count 4
 
+#define buzzer_pin 7
+
 Servo servos[servcount];
 const int servopins[servcount] = { 8, 9, 10, 11 };
 const int ldr_pins[ldr_count] = { A0, A1, A2, A3 };
@@ -47,6 +49,12 @@ void loop() {
   // set the motors to the right position 
   set_motors(i);
   Serial.println(); // clear distinction between blocks
+
+  // *soundeffects*
+  if (Serial.available() > 0) {
+    String input = Serial.readString();
+    buzzer(input);
+  }
   
   // don't overheat the arduino
   delay(500);
@@ -126,4 +134,18 @@ void highest_element_index(int arr[ldr_count][2], int output_array[2]) {
 
   output_array[0] = highest_i[0];
   output_array[1] = highest_i[1];
+}
+
+void buzzer(String input) {
+  if (input.equals("TOOT\n")) {
+    tone(buzzer_pin, 400);
+    delay(500);
+    noTone(buzzer_pin);
+    delay(100);
+    tone(buzzer_pin, 400);
+    delay(700);
+    noTone(buzzer_pin);
+  } else if (input.equals("never\n")) {
+    never();
+  }
 }
